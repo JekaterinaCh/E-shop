@@ -12,6 +12,8 @@ from rest_framework import status
 #     "phone": "1234567890"
 # }
 
+# comment
+
 
 @api_view(['POST'])
 def register(request):

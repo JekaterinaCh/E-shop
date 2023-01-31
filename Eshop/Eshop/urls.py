@@ -22,3 +22,5 @@ urlpatterns = [
     path("api/registration/", views.register),
     path("api/login/", views.login_view),
 ]
+
+# comment
