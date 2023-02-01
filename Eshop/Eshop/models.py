@@ -15,3 +15,21 @@ class User(models.Model):
 
     class Meta:
         db_table = 'users'
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+    class Meta:
+        db_table = 'category'
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.FloatField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'product'
