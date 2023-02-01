@@ -1,8 +1,10 @@
 from django.contrib.auth.hashers import make_password, check_password
-from .models import User
+from .models import User, Category, Product
+from .serializers import CategorySerializer, ProductSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import generics
 
 # {
 #     "first_name": "John",
@@ -52,3 +54,23 @@ def login_view(request):
                 return Response({'status': 'incorrect email or password'})
         except User.DoesNotExist:
             return Response({'status': 'incorrect email or password, user does not exist'})
+
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class ProductList(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
